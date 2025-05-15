@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { saveStoredJobApplications } from '../../Utilitys/LocalStorage';
 
 const JobDetails = () => {
     const jobs = useLoaderData();
     const {userId} = useParams();
     const job = jobs.find(job => parseInt(userId) === job.id)
     const notify = () =>{
+        saveStoredJobApplications(job.id)
         toast("You have applied successfully")
     }
     return (
